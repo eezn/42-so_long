@@ -6,14 +6,14 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/16 15:39:38 by jin-lee           #+#    #+#              #
-#    Updated: 2021/11/16 15:44:01 by jin-lee          ###   ########.fr        #
+#    Updated: 2021/11/24 14:21:23 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= so_long
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= # -Wall -Werror -Wextra
 
 OPTIONS		= -arch x86_64
 
@@ -24,9 +24,19 @@ LIBMLX		= ./mlx/libmlx.a
 
 INCS_DIR	= ./includes
 OBJS_DIR	= ./objects
-SRCS_DIR	= ./srcs
 
-SRCS		= ./srcs/main.c
+
+
+SRCS_DIR	= ./srcs \
+			  ./srcs/utils \
+			  ./srcs/get_next_line \
+
+SRCS		= ./srcs/main.c \
+			  ./srcs/check_map.c \
+			  ./srcs/utils/exit_error.c \
+			  \
+			  ./srcs/get_next_line/get_next_line.c \
+
 
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 vpath %.c $(SRCS_DIR)
@@ -39,7 +49,7 @@ all: $(NAME)
 
 # so_long
 $(NAME): $(OBJS) $(LIBFT) $(LIBMLX)
-	@$(CC) $(LIB) $< -o $@
+	@$(CC) $(LIB) $^ -o $@
 	@echo "\033[32m\n"so_long built successfully."\033[0m\n"
 
 $(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)

@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:16:14 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/25 19:44:11 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/25 20:11:30 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define ERR_PLYR "\033[33mError: There is no starting position.\033[0m"
 # define ERR_COLL "\033[33mError: Map must have at least one collectible.\033[0m"
 # define ERR_EXIT "\033[33mError: Map must have at least one exit.\033[0m"
+
+# define ERR_CLOSED "\033[33mError: Map is not surrounded by walls.\033[0m"
 
 typedef struct s_arr	t_arr;
 
@@ -157,6 +159,22 @@ void	check_elem(t_map *info)
 		exit_error(ERR_EXIT, MESSAGE);
 }
 
+void	check_is_closed(t_arr *arr)
+{
+	char	**map;
+	int		i;
+
+	map = arr->map_data;
+	i = -1;
+	while (++i < arr->col)
+		if (map[0][i] != '1' || map[arr->row - 1][i] != '1')
+			exit_error(ERR_CLOSED, MESSAGE);
+	i = -1;
+	while (++i < arr->row)
+		if (map[i][0] != '1' || map[i][arr->col - 1] != '1')
+			exit_error(ERR_CLOSED, MESSAGE);
+}
+
 void	check_map2(char *pathname, t_arr *arr, t_map *info)
 {
 	int		fd;
@@ -176,6 +194,7 @@ void	check_map2(char *pathname, t_arr *arr, t_map *info)
 	}
 	free(line);
 	check_elem(info);
+	check_is_closed(arr);
 }
 
 /* ************************************************************************** */
@@ -200,19 +219,6 @@ void	check_map(char *pathname)
 	// 	printf("\n");
 	// 	i++;
 	// }
-
-	int i = 0;
-	while (i < arr->row)
-	{
-		free(arr->map_data[i]);
-		i++;
-	}
-	free(arr->map_data);
-	free(arr);
-	free(info);
-
-	while (1)
-	{}
 
 	/* Print info */
 	// nl();

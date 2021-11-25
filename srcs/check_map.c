@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:16:14 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/25 18:06:13 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/25 19:18:12 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,21 @@ struct s_map
 	int	wall;
 	int space;
 };
+
+t_map	*init_info(void)
+{
+	t_map	*ret;
+
+	ret = (t_map *)malloc(sizeof(t_map));
+	if (!ret)
+		return (NULL);
+	ret->plyr = 0;
+	ret->coll = 0;
+	ret->exit = 0;
+	ret->wall = 0;
+	ret->space = 0;
+	return (ret);
+}
 
 /* malloc_arr *************************************************************** */
 
@@ -86,25 +101,62 @@ t_arr	*malloc_arr(char *pathname)
 
 /* ************************************************************************** */
 
-int	is_rectangular(t_arr *arr, char *line)
+int	is_rectangular(char *line, t_arr *arr)
 {
 	if (arr->col != ft_strlen(line))
 		return (1);
 	return (0);
 }
 
+void	count_elem(t_map *info, char elem)
+{
+	if (elem == 'P')
+		info->plyr++;
+	if (elem == 'C')
+		info->coll++;
+	if (elem == 'E')
+		info->exit++;
+	if (elem == '1')
+		info->wall++;
+	if (elem == '0')
+		info->space++;
+}
+
+void	parse_map(char *line, char **arr, t_map *info, int row)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == 'P' || line[i] == 'C' || line[i] == 'E' ||
+			line[i] == '1' || line[i] == '0')
+		{
+			count_elem(info, line[i]);
+			arr[row][i] = line[i];
+			i++;
+		}
+		else
+			exit_error(ERR_ELEM, MESSAGE);
+	}
+}
+
 void	check_map2(char *pathname, t_arr *arr, t_map *info)
 {
 	int		fd;
 	char	*line;
+	int		count;
 
 	fd = open_file(pathname);
+	count = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
 		// printf("%s\n", line);
-		if (is_rectangular(arr, line))
+		if (is_rectangular(line, arr))
 			exit_error(ERR_RECT, MESSAGE);
+		parse_map(line, arr->map_data, info, count);
 		free(line);
+		count++;
 	}
 }
 
@@ -115,6 +167,27 @@ void	check_map(char *pathname)
 	t_arr	*arr;
 	t_map	*info;
 
-	arr = malloc_arr(pathname);	// 이중 배열 free 필요
+	arr = malloc_arr(pathname);
+	info = init_info();
 	check_map2(pathname, arr, info);
+
+	/* Print array */
+	// nl();
+	// int i = 0;
+	// while (i < arr->row)
+	// {
+	// 	int j = 0;
+	// 	while (j < arr->col)
+	// 		printf("%c ", arr->map_data[i][j++]);
+	// 	printf("\n");
+	// 	i++;
+	// }
+
+	/* Print info */
+	// nl();
+	// printf("P: %d\n", info->plyr);
+	// printf("C: %d\n", info->coll);
+	// printf("E: %d\n", info->exit);
+	// printf("1: %d\n", info->wall);
+	// printf("0: %d\n", info->space);
 }

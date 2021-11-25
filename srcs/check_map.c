@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:16:14 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/25 19:18:12 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/25 19:44:11 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 # define ERR_OPEN "\033[33mError: Failed to open the file.\033[0m"
 # define ERR_RECT "\033[33mError: Map file is not rectangular.\033[0m"
 # define ERR_ELEM "\033[33mError: Invalid elements.\033[0m"
+
+# define ERR_PLYR "\033[33mError: There is no starting position.\033[0m"
+# define ERR_COLL "\033[33mError: Map must have at least one collectible.\033[0m"
+# define ERR_EXIT "\033[33mError: Map must have at least one exit.\033[0m"
 
 typedef struct s_arr	t_arr;
 
@@ -74,6 +78,7 @@ t_arr	*get_size(char *pathname)
 	arr = (t_arr *)malloc(sizeof(t_arr));
 	arr->col = 0;
 	arr->row = 0;
+	arr->map_data = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
 		line_len = ft_strlen(line);
@@ -82,6 +87,7 @@ t_arr	*get_size(char *pathname)
 		arr->row++;
 		free(line);
 	}
+	free(line);
 	close(fd);
 	return (arr);
 }
@@ -141,6 +147,16 @@ void	parse_map(char *line, char **arr, t_map *info, int row)
 	}
 }
 
+void	check_elem(t_map *info)
+{
+	if (info->plyr != 1)
+		exit_error(ERR_PLYR, MESSAGE);
+	if (info->coll < 1)
+		exit_error(ERR_COLL, MESSAGE);
+	if (info->exit < 1)
+		exit_error(ERR_EXIT, MESSAGE);
+}
+
 void	check_map2(char *pathname, t_arr *arr, t_map *info)
 {
 	int		fd;
@@ -158,6 +174,8 @@ void	check_map2(char *pathname, t_arr *arr, t_map *info)
 		free(line);
 		count++;
 	}
+	free(line);
+	check_elem(info);
 }
 
 /* ************************************************************************** */
@@ -182,6 +200,19 @@ void	check_map(char *pathname)
 	// 	printf("\n");
 	// 	i++;
 	// }
+
+	int i = 0;
+	while (i < arr->row)
+	{
+		free(arr->map_data[i]);
+		i++;
+	}
+	free(arr->map_data);
+	free(arr);
+	free(info);
+
+	while (1)
+	{}
 
 	/* Print info */
 	// nl();

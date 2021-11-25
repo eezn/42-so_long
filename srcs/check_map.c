@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:16:14 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/25 02:17:43 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/25 18:06:13 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,18 @@ struct s_arr
 	char	**map_data;
 };
 
-/* ************************************************************************** */
+typedef struct s_map	t_map;
+
+struct s_map
+{
+	int	plyr;
+	int	coll;
+	int	exit;
+	int	wall;
+	int space;
+};
+
+/* malloc_arr *************************************************************** */
 
 int	open_file(char *pathname)
 {
@@ -56,6 +67,7 @@ t_arr	*get_size(char *pathname)
 		arr->row++;
 		free(line);
 	}
+	close(fd);
 	return (arr);
 }
 
@@ -74,9 +86,35 @@ t_arr	*malloc_arr(char *pathname)
 
 /* ************************************************************************** */
 
+int	is_rectangular(t_arr *arr, char *line)
+{
+	if (arr->col != ft_strlen(line))
+		return (1);
+	return (0);
+}
+
+void	check_map2(char *pathname, t_arr *arr, t_map *info)
+{
+	int		fd;
+	char	*line;
+
+	fd = open_file(pathname);
+	while (get_next_line(fd, &line) > 0)
+	{
+		// printf("%s\n", line);
+		if (is_rectangular(arr, line))
+			exit_error(ERR_RECT, MESSAGE);
+		free(line);
+	}
+}
+
+/* ************************************************************************** */
+
 void	check_map(char *pathname)
 {
 	t_arr	*arr;
+	t_map	*info;
 
-	arr = malloc_arr(pathname);
+	arr = malloc_arr(pathname);	// 이중 배열 free 필요
+	check_map2(pathname, arr, info);
 }

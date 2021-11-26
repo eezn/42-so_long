@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.c                                        :+:      :+:    :+:   */
+/*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:16:14 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/26 15:00:15 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/26 15:27:22 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	check_map2(char *pathname, t_map *map, t_elem *elems)
+static void	check_map(char *pathname, t_map *map, t_elem *elems)
 {
 	int		fd;
 	char	*line;
@@ -33,14 +33,14 @@ static void	check_map2(char *pathname, t_map *map, t_elem *elems)
 	check_is_closed(map);
 }
 
-t_map	*check_map(char *pathname)
+t_map	*read_map(char *pathname)
 {
 	t_map	*map;
 	t_elem	*elems;
 
 	map = malloc_map(pathname);
 	elems = init_elem();
-	check_map2(pathname, map, elems);
+	check_map(pathname, map, elems);
 	map->elems = elems;
 	return (map);
 }

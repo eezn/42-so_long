@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:45:25 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/26 14:36:56 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/26 15:03:29 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,12 @@ struct	s_game
 {
 	void	*mlx;
 	void	*win;
+	t_map	*map;
 };
 
 /* Utils */
 void	exit_error(char *message, int flag);
 
-void	check_map(char *pathname);
+t_map	*check_map(char *pathname);
 
 #endif

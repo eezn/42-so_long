@@ -6,13 +6,13 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:16:14 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/26 14:31:42 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/26 15:00:15 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	check_map2(char *pathname, t_arr *arr, t_elem *elem)
+static void	check_map2(char *pathname, t_map *map, t_elem *elems)
 {
 	int		fd;
 	char	*line;
@@ -22,23 +22,25 @@ static void	check_map2(char *pathname, t_arr *arr, t_elem *elem)
 	count = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
-		if (is_rectangular(line, arr))
+		if (is_rectangular(line, map))
 			exit_error(ERR_RECT, MESSAGE);
-		parse_map(line, arr->map_data, elem, count);
+		parse_map(line, map->map_data, elems, count);
 		free(line);
 		count++;
 	}
 	free(line);
-	check_elem(elem);
-	check_is_closed(arr);
+	check_elem(elems);
+	check_is_closed(map);
 }
 
-void	check_map(char *pathname)
+t_map	*check_map(char *pathname)
 {
-	t_arr	*arr;
-	t_elem	*elem;
+	t_map	*map;
+	t_elem	*elems;
 
-	arr = malloc_arr(pathname);
-	elem = init_elem();
-	check_map2(pathname, arr, elem);
+	map = malloc_map(pathname);
+	elems = init_elem();
+	check_map2(pathname, map, elems);
+	map->elems = elems;
+	return (map);
 }

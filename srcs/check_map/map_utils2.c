@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 01:37:36 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/26 14:32:42 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/26 15:02:21 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,62 +14,62 @@
 
 /* Check map is rectangular. */
 
-int	is_rectangular(char *line, t_arr *arr)
+int	is_rectangular(char *line, t_map *map)
 {
-	if (arr->col != ft_strlen(line))
+	if (map->col != ft_strlen(line))
 		return (1);
 	return (0);
 }
 
 /* Check if map is surrounded by walls. */
 
-void	check_is_closed(t_arr *arr)
+void	check_is_closed(t_map *map)
 {
-	char	**map;
+	char	**arr;
 	int		i;
 
-	map = arr->map_data;
+	arr = map->map_data;
 	i = -1;
-	while (++i < arr->col)
-		if (map[0][i] != '1' || map[arr->row - 1][i] != '1')
+	while (++i < map->col)
+		if (arr[0][i] != '1' || arr[map->row - 1][i] != '1')
 			exit_error(ERR_CLOSED, MESSAGE);
 	i = -1;
-	while (++i < arr->row)
-		if (map[i][0] != '1' || map[i][arr->col - 1] != '1')
+	while (++i < map->row)
+		if (arr[i][0] != '1' || arr[i][map->col - 1] != '1')
 			exit_error(ERR_CLOSED, MESSAGE);
 }
 
 /* Check minimum requirement of component. */
 
-void	check_elem(t_elem *e)
+void	check_elem(t_elem *elems)
 {
-	if (e->plyr != 1)
+	if (elems->plyr != 1)
 		exit_error(ERR_PLYR, MESSAGE);
-	if (e->coll < 1)
+	if (elems->coll < 1)
 		exit_error(ERR_COLL, MESSAGE);
-	if (e->exit < 1)
+	if (elems->exit < 1)
 		exit_error(ERR_EXIT, MESSAGE);
 }
 
 /* Count a number of each elements and record. */
 
-static void	count_elem(t_elem *elem, char e)
+static void	count_elem(t_elem *elems, char elem)
 {
-	if (e == 'P')
-		elem->plyr++;
-	if (e == 'C')
-		elem->coll++;
-	if (e == 'E')
-		elem->exit++;
-	if (e == '1')
-		elem->wall++;
-	if (e == '0')
-		elem->space++;
+	if (elem == 'P')
+		elems->plyr++;
+	if (elem == 'C')
+		elems->coll++;
+	if (elem == 'E')
+		elems->exit++;
+	if (elem == '1')
+		elems->wall++;
+	if (elem == '0')
+		elems->space++;
 }
 
 /* Funtion that will parse map file to check elements and count elements. */
 
-void	parse_map(char *line, char **arr, t_elem *elem, int row)
+void	parse_map(char *line, char **map, t_elem *elems, int row)
 {
 	int	i;
 
@@ -79,8 +79,8 @@ void	parse_map(char *line, char **arr, t_elem *elem, int row)
 		if (line[i] == 'P' || line[i] == 'C' || line[i] == 'E'
 			|| line[i] == '1' || line[i] == '0')
 		{
-			count_elem(elem, line[i]);
-			arr[row][i] = line[i];
+			count_elem(elems, line[i]);
+			map[row][i] = line[i];
 			i++;
 		}
 		else

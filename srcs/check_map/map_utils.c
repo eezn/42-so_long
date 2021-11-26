@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 01:18:05 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/26 14:09:12 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/26 15:00:30 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int	open_file(char *pathname)
 	return (fd);
 }
 
-t_arr	*init_arr(void)
+t_map	*init_map(void)
 {
-	t_arr	*ret;
+	t_map	*ret;
 
-	ret = (t_arr *)malloc(sizeof(t_arr));
+	ret = (t_map *)malloc(sizeof(t_map));
 	ret->col = 0;
 	ret->row = 0;
 	ret->map_data = NULL;

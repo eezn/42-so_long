@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/16 15:39:38 by jin-lee           #+#    #+#              #
-#    Updated: 2021/11/26 14:35:43 by jin-lee          ###   ########.fr        #
+#    Updated: 2021/11/26 15:03:43 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ SRCS_DIR	= ./srcs \
 SRCS		= ./srcs/main.c \
 			  ./srcs/check_map.c \
 			  \
-			  ./srcs/check_map/malloc_arr.c \
+			  ./srcs/check_map/malloc_map.c \
 			  ./srcs/check_map/map_utils.c \
 			  ./srcs/check_map/map_utils2.c \
 			  \

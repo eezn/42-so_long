@@ -6,21 +6,22 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 01:10:12 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/26 14:32:58 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/26 14:58:16 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECK_MAP_H
 # define CHECK_MAP_H
 
-typedef struct s_arr	t_arr;
+typedef struct s_map	t_map;
 typedef struct s_elem	t_elem;
 
-struct s_arr
+struct s_map
 {
 	int		row;
 	int		col;
 	char	**map_data;
+	t_elem	*elems;
 };
 
 struct s_elem
@@ -32,15 +33,15 @@ struct s_elem
 	int	space;
 };
 
-t_arr	*malloc_arr(char *pathname);
+t_map	*malloc_map(char *pathname);
 
 int		open_file(char *pathname);
-t_arr	*init_arr(void);
+t_map	*init_map(void);
 t_elem	*init_elem(void);
 
-int		is_rectangular(char *line, t_arr *arr);
-void	check_is_closed(t_arr *arr);
-void	check_elem(t_elem *info);
-void	parse_map(char *line, char **arr, t_elem *info, int row);
+int		is_rectangular(char *line, t_map *map);
+void	check_is_closed(t_map *map);
+void	check_elem(t_elem *elems);
+void	parse_map(char *line, char **map, t_elem *elems, int row);
 
 #endif

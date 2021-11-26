@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map.h                                        :+:      :+:    :+:   */
+/*   read_map.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 01:10:12 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/26 14:58:16 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/26 17:01:06 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CHECK_MAP_H
-# define CHECK_MAP_H
+#ifndef READ_MAP_H
+# define READ_MAP_H
 
 typedef struct s_map	t_map;
 typedef struct s_elem	t_elem;

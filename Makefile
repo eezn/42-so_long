@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/16 15:39:38 by jin-lee           #+#    #+#              #
-#    Updated: 2021/11/26 15:28:08 by jin-lee          ###   ########.fr        #
+#    Updated: 2021/11/26 17:02:30 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,15 +27,15 @@ OBJS_DIR	= ./objects
 
 SRCS_DIR	= ./srcs \
 			  ./srcs/get_next_line \
-			  ./srcs/check_map \
+			  ./srcs/read_map \
 			  ./srcs/utils
 
 SRCS		= ./srcs/main.c \
 			  ./srcs/read_map.c \
 			  \
-			  ./srcs/check_map/malloc_map.c \
-			  ./srcs/check_map/map_utils.c \
-			  ./srcs/check_map/map_utils2.c \
+			  ./srcs/read_map/malloc_map.c \
+			  ./srcs/read_map/map_utils.c \
+			  ./srcs/read_map/map_utils2.c \
 			  \
 			  ./srcs/get_next_line/get_next_line.c \
 			  \

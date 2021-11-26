@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:45:25 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/26 15:26:48 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/26 19:17:50 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # include <errno.h>
 # include "./get_next_line.h"
-# include "./check_map.h"
+# include "./read_map.h"
 # include "./error_message.h"
 # include "../libft/includes/libft.h"
 # include "../mlx/mlx.h"
@@ -39,6 +39,6 @@ struct	s_game
 /* Utils */
 void	exit_error(char *message, int flag);
 
-t_map	*read_map(char *pathname);
+void	read_map(t_game *game, char *pathname);
 
 #endif

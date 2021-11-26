@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:16:14 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/26 15:27:22 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/26 15:34:28 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@ static void	check_map(char *pathname, t_map *map, t_elem *elems)
 		count++;
 	}
 	free(line);
+	close(fd);
 	check_elem(elems);
 	check_is_closed(map);
 }
 
-t_map	*read_map(char *pathname)
+void	read_map(t_game *game, char *pathname)
 {
 	t_map	*map;
 	t_elem	*elems;
@@ -42,5 +43,5 @@ t_map	*read_map(char *pathname)
 	elems = init_elem();
 	check_map(pathname, map, elems);
 	map->elems = elems;
-	return (map);
+	game->map = map;
 }

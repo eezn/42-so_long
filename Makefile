@@ -6,7 +6,7 @@
 #    By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/16 15:39:38 by jin-lee           #+#    #+#              #
-#    Updated: 2021/11/24 14:21:23 by jin-lee          ###   ########.fr        #
+#    Updated: 2021/11/26 14:35:43 by jin-lee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,17 +25,21 @@ LIBMLX		= ./mlx/libmlx.a
 INCS_DIR	= ./includes
 OBJS_DIR	= ./objects
 
-
-
 SRCS_DIR	= ./srcs \
-			  ./srcs/utils \
 			  ./srcs/get_next_line \
+			  ./srcs/check_map \
+			  ./srcs/utils
 
 SRCS		= ./srcs/main.c \
 			  ./srcs/check_map.c \
-			  ./srcs/utils/exit_error.c \
+			  \
+			  ./srcs/check_map/malloc_arr.c \
+			  ./srcs/check_map/map_utils.c \
+			  ./srcs/check_map/map_utils2.c \
 			  \
 			  ./srcs/get_next_line/get_next_line.c \
+			  \
+			  ./srcs/utils/exit_error.c
 
 
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
@@ -79,4 +83,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all, so_long, claen, fclean, re
+.PHONY: all, so_long, clean, fclean, re

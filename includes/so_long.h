@@ -6,23 +6,23 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:45:25 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/25 02:20:19 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/26 14:36:56 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	SO_LONG_H
+#ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <fcntl.h>
 # include <unistd.h>
+# include <stdlib.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include <errno.h>
 # include "./get_next_line.h"
-# include "../mlx/mlx.h"
+# include "./check_map.h"
+# include "./error_message.h"
 # include "../libft/includes/libft.h"
-
-# define MESSAGE 1
-# define PERROR 0
+# include "../mlx/mlx.h"
 
 # define TRUE 1
 # define FALSE 0
@@ -35,15 +35,9 @@ struct	s_game
 	void	*win;
 };
 
-
-/*
-**Utils
-*/
+/* Utils */
 void	exit_error(char *message, int flag);
 
-/*
-**
-*/
 void	check_map(char *pathname);
 
 #endif

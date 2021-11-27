@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:45:25 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/27 22:57:03 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/28 06:03:01 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "./get_next_line.h"
 # include "./error_message.h"
 # include "./structs.h"
+# include "./key.h"
 # include "./read_map.h"
 
 # define TRUE 1

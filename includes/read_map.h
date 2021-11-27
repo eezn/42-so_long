@@ -6,32 +6,16 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 01:10:12 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/26 17:01:06 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/27 22:54:30 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef READ_MAP_H
 # define READ_MAP_H
 
-typedef struct s_map	t_map;
-typedef struct s_elem	t_elem;
+# include "./structs.h"
 
-struct s_map
-{
-	int		row;
-	int		col;
-	char	**map_data;
-	t_elem	*elems;
-};
-
-struct s_elem
-{
-	int	plyr;
-	int	coll;
-	int	exit;
-	int	wall;
-	int	space;
-};
+# define TILE_SIZE 64
 
 t_map	*malloc_map(char *pathname);
 

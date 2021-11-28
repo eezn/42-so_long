@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 01:04:55 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/29 03:25:56 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/29 03:30:47 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define ERR_OPEN "\033[33mError: Failed to open the file.\033[0m"
 # define ERR_RECT "\033[33mError: Map file is not rectangular.\033[0m"
 # define ERR_ELEM "\033[33mError: Invalid element found in map file.\033[0m"
-# define ERR_PLYR "\033[33mError: Map must have one starting position\033[0m"
+# define ERR_PLYR "\033[33mError: Map must have one starting position.\033[0m"
 # define ERR_COLL "\033[33mError: Map must have at least one collectible.\033[0m"
 # define ERR_EXIT "\033[33mError: Map must have at least one exit.\033[0m"
 # define ERR_CLOSED "\033[33mError: Map is not surrounded by walls.\033[0m"

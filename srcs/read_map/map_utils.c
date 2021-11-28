@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 01:18:05 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/26 15:00:30 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/29 02:55:45 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_map	*init_map(void)
 	t_map	*ret;
 
 	ret = (t_map *)malloc(sizeof(t_map));
+	if (!ret)
+		return (NULL);
 	ret->col = 0;
 	ret->row = 0;
 	ret->map_data = NULL;
@@ -43,6 +45,7 @@ t_elem	*init_elem(void)
 	ret->plyr = 0;
 	ret->coll = 0;
 	ret->exit = 0;
+	ret->axit = FALSE;
 	ret->wall = 0;
 	ret->space = 0;
 	return (ret);

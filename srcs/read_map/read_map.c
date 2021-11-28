@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:16:14 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/28 02:08:18 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/29 03:00:58 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ void	read_map(t_game *game, char *pathname)
 	check_map(pathname, map, elems);
 	map->elems = elems;
 	game->map = map;
-	game->height = map->row * TILE_SIZE;
 	game->width = map->col * TILE_SIZE;
+	game->height = map->row * TILE_SIZE;
 }

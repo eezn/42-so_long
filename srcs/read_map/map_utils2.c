@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 01:37:36 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/26 15:02:21 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/29 00:35:23 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	is_rectangular(char *line, t_map *map)
 {
-	if (map->col != ft_strlen(line))
+	if (map->col != (int)ft_strlen(line))
 		return (1);
 	return (0);
 }

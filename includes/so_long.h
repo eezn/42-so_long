@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 15:45:25 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/28 06:03:01 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/29 03:12:21 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,20 @@
 # include "./key.h"
 # include "./read_map.h"
 
+# define TILE_SIZE 64
 # define TRUE 1
 # define FALSE 0
 
 /* Utils */
+int		exit_game(t_game *game);
+void	exit_success(t_game *game);
 void	exit_error(char *message, int flag);
+void	print_line(int col);
 
-void	read_map(t_game *game, char *pathname);
+/* Draw Window */
+void	init_tile(t_game *game);
+void	put_img(t_game *game, void *ptr, int c, int r);
+void	draw_base(t_game *game, int c, int r);
+void	draw_player(t_game *game, int pc, int pr);
 
 #endif

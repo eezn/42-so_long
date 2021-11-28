@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 22:39:04 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/28 05:56:43 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/29 02:25:42 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,24 @@
 typedef struct s_game	t_game;
 typedef struct s_map	t_map;
 typedef struct s_elem	t_elem;
-typedef	struct s_tile	t_tile;
-typedef struct s_img	t_img;
+typedef struct s_tile	t_tile;
 typedef struct s_plyr	t_plyr;
 
 struct s_plyr
 {
-	int		curr_x;
-	int		curr_y;
-};
-
-struct s_img
-{
-	void	*img;
+	int	c;
+	int	r;
+	int	step;
 };
 
 struct s_tile
 {
-	t_img	wl;
-	t_img	ex;
-	t_img	ax;
-	t_img	pl;
-	t_img	co;
+	void	*wl;
+	void	*ex;
+	void	*ax;
+	void	*pl;
+	void	*co;
+	void	*bg;
 };
 
 struct s_elem
@@ -45,9 +41,11 @@ struct s_elem
 	int	plyr;
 	int	coll;
 	int	exit;
+	int	axit;
 	int	wall;
 	int	space;
 };
+
 struct s_map
 {
 	int		col;
@@ -61,9 +59,8 @@ struct	s_game
 	void	*mlx;
 	void	*win;
 	t_map	*map;
-	int		width;		// col * TILE_SIZE
-	int		height;		// row * TILE_SIZE
-	
+	int		width;
+	int		height;
 	t_tile	tiles;
 	t_plyr	plyr;
 };

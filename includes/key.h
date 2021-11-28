@@ -6,7 +6,7 @@
 /*   By: jin-lee <jin-lee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 01:45:38 by jin-lee           #+#    #+#             */
-/*   Updated: 2021/11/28 04:58:22 by jin-lee          ###   ########.fr       */
+/*   Updated: 2021/11/29 03:05:45 by jin-lee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,14 @@
 # define KEY_LEFT			123
 # define KEY_DOWN			125
 # define KEY_RIGHT			124
+
+/* Flags */
+# define UP	1
+# define DOWN 2
+# define LEFT 3
+# define RIGHT 4
+
+int		key_press(int keycode, t_game *game);
+void	check_movable(t_game *game, int dir);
 
 #endif
